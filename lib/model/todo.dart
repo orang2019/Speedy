@@ -11,6 +11,7 @@ class Todo {
   String? id; //todo:?로 null check 하는것보다, required하는게 더 나은ㄴ가 ? id를 왜쓰는지 알고 여기 수정?
   String description;
   bool isDone;
+  String? timer;
 
   Todo({
     required this.createdTime,
@@ -18,6 +19,7 @@ class Todo {
     this.description = '',
     this.id,
     this.isDone = false,
+    this.timer
   });
 
   static Todo fromJson(Map<String, dynamic> json) => Todo(
@@ -26,6 +28,8 @@ class Todo {
     description: json['description'],
     id: json['id'],
     isDone: json['isDone'],
+    timer: json['timer'],
+
   );
 
   Map<String, dynamic> toJson() => {
@@ -34,6 +38,8 @@ class Todo {
     'description': description,
     'id': id,
     'isDone': isDone,
+    'timer': timer,
+
   };
 
 
