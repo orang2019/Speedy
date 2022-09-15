@@ -34,15 +34,10 @@ class _EditTodoPageState extends State<EditTodoPage> {
       return; // validate 체크 안해도됨.
     } else {
       final provider = Provider.of<TodosProvider>(context, listen: false);
-      // final todos = provider.todos;
-      // final Map<dynamic, Todo> todomap = todos.asMap();
-      // todomap.forEach((key, value) {if(widget.todo.title == value.title){
-      //   provider.updateTodo(value, value.title, value.description);
-      // }});
 
       provider.updateTodo(widget.todo, title, description);
       return Navigator.of(context).pop();
-      //todo : 정말 지우겠습니까 ? 팝업창
+
 
 
   }}
@@ -56,6 +51,8 @@ class _EditTodoPageState extends State<EditTodoPage> {
         IconButton(
           icon: Icon(Icons.delete),
           onPressed: () {
+            //todo : 정말 지우겠습니까 ? 팝업창
+
             final provider = Provider.of<TodosProvider>(context, listen: false);
             provider.removeTodo(widget.todo);
 

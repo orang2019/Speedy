@@ -3,63 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:lastaginfirebase/provider/todos.dart';
 
-//getx, hive
 import 'package:intl/intl.dart';
-//캘린더
-
 import 'package:flutter/foundation.dart';
 import 'package:intl/date_symbol_data_local.dart';
-
-import 'package:provider/provider.dart';
-import 'package:lastaginfirebase/provider/todos.dart';
 import 'package:lastaginfirebase/widget/todo_widget.dart';
-
-import 'package:lastaginfirebase/api/firebase_api.dart';
-
-
-
-
-
-// void main() {
-//   initializeDateFormatting().then((_) => runApp(MaterialApp(  //캘린더한국어
-//     home:CalendarWidget() ,
-//   )));}
-
-
-
-// class CalendarMain extends StatelessWidget {
-//   const CalendarMain({Key? key}) : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     //stful 과 provider은 함께 쓸 수 없다.
-//     final provider = Provider.of<TodosProvider>(context);
-//     final todos = provider.todos;
-//
-//     return Scaffold(
-//       body: Column(
-//         children: [
-//           Expanded(child: SizedBox(child: CalendarWidget())),
-//           Expanded(child: Container(child: CalendarText()))]));
-//           // todos.isEmpty
-//           //     ? Center(
-//           //     child: Text('No todos.', style: TextStyle(fontSize: 20),),)
-//           //     : ListView.separated(
-//           //     shrinkWrap: true,
-//           //     physics: BouncingScrollPhysics(),
-//           //     padding: EdgeInsets.all(16), //card간 분리
-//           //     separatorBuilder: (context, index) => Container(height: 8),
-//           //     itemCount: todos.length,
-//           //     itemBuilder: (context, index) {
-//           //     final todo = todos[index];
-//           //
-//           //     return TodoWidget(todo: todo);
-//           //     },
-//           //     )
-//
-//
-//   }
-// }
-
 
 
 
@@ -81,12 +28,6 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
   DateTime selectedDay = DateTime.now();
   DateTime focusedDay = DateTime.now();
-
-  //todo
-  /// 아래뭔지 모르겠음
-  /// focusedDay 가 잘못된거 ?
-  /// headerstyle 바꿔도 안됨.
-  /// 일단 깃허브에 저장 ㄲㄱ
 
 
   @override
@@ -141,7 +82,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
                               child: TableCalendar(
 
-                                focusedDay: DateTime.now(),
+                                focusedDay: focusedDay,
                                 firstDay: DateTime(2022),
                                 lastDay: DateTime(2030),
                                 locale: 'ko-KR',
