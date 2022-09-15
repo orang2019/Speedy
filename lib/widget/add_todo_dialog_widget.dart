@@ -47,14 +47,75 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
     if (!isValid) {
       return;
     }else {
+      //저장버튼 누르면 -> 그날날짜 +1,2,5,7,15,30,60,120도 똑같이 복사
+      var now = new DateTime.now(); //잠시 저장= 원랜 오늘 복습 ㄴ?
+      // var review1 = now.add(new Duration(days: 1));
+      var review2 = now.add(new Duration(days: 1));
+      var review5 = now.add(new Duration(days: 5));
+      var review7 = now.add(new Duration(days: 7));
+      var review15 = now.add(new Duration(days: 15));
+      var review30 = now.add(new Duration(days: 30));
+      var review60 = now.add(new Duration(days: 60));
+      var review120 = now.add(new Duration(days: 120));
+
       final todo = Todo(
         id: DateTime.now().toString(),
         title: title,
         description: description,
-        createdTime: DateTime.now(),
+        createdTime: now,
+        timer: "0"
+      );final todo2 = Todo(
+        id: DateTime.now().toString(),
+        title: title,
+        description: description,
+        createdTime: review2,
+        timer: "0"
+      );final todo5 = Todo(
+        id: DateTime.now().toString(),
+        title: title,
+        description: description,
+        createdTime: review5,
+          timer: "0"
+      );final todo7 = Todo(
+        id: DateTime.now().toString(),
+        title: title,
+        description: description,
+        createdTime: review7,
+          timer: "0"
+      );final todo15 = Todo(
+        id: DateTime.now().toString(),
+        title: title,
+        description: description,
+        createdTime: review15,
+          timer: "0"
+      );final todo30 = Todo(
+        id: DateTime.now().toString(),
+        title: title,
+        description: description,
+        createdTime: review30,
+          timer: "0"
+      );final todo60 = Todo(
+        id: DateTime.now().toString(),
+        title: title,
+        description: description,
+        createdTime: review60,
+          timer: "0"
+      );final todo120 = Todo(
+        id: DateTime.now().toString(),
+        title: title,
+        description: description,
+        createdTime:review120,
+          timer: "0"
       );
       final provider = Provider.of<TodosProvider>(context, listen: false);
       provider.addTodo(todo);
+      provider.addTodo(todo2);
+      provider.addTodo(todo5);
+      provider.addTodo(todo7);
+      provider.addTodo(todo15);
+      provider.addTodo(todo30);
+      provider.addTodo(todo60);
+      provider.addTodo(todo120);
 
       Navigator.of(context).pop();
     }

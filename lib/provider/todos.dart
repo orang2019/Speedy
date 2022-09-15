@@ -35,9 +35,10 @@ class TodosProvider extends ChangeNotifier {
 //     ),
   ];
 
-    // todo
-  List<Todo> get todos => _todos.where((todo) => todo.isDone == false).toList();
 
+  /// 안한놈
+  List<Todo> get todos => _todos.where((todo) => todo.isDone == false).toList();
+  /// 한놈
   List<Todo> get todosCompleted => _todos.where((todo) => todo.isDone == true).toList();
 
   void setTodos(List todos) =>

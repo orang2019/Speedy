@@ -8,6 +8,7 @@ import 'package:lastaginfirebase/widget/completed_list_widget.dart';
 import 'package:lastaginfirebase/provider/todos.dart';
 import 'package:provider/provider.dart';
 import 'package:lastaginfirebase/widget/calendar_widget.dart';
+import 'package:lastaginfirebase/widget/TodayReviewWidget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,8 +21,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      TodoListWidget(), //1번째탭 페이지
-      CompletedListWidget(),//2번째탭 페이지
+      TodayReviewWidget(),
+      //Todo : 캘로 옮길것
+      // TodoListWidget(), //1번째탭 페이지 //안함 -> 캘
+      // CompletedListWidget(),//2번째탭 페이지 // 할 -> 캘
       CalendarWidget(),//2번째탭 페이지
     ];
 
@@ -36,13 +39,17 @@ class _HomePageState extends State<HomePage> {
         }),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.fact_check_outlined),
-            label: 'Todos',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.done, size: 28),
-            label: 'Completed',
-          ),
+            icon: Icon(Icons.play_arrow_rounded),
+            label: 'TodayReview',),
+          //Todo : 캘로 옮길것
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.fact_check_outlined),
+          //   label: 'Todos',
+          // ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.done, size: 28),
+          //   label: 'Completed',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_month, size: 28),
             label: 'Calendar',

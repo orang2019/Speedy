@@ -149,10 +149,10 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                 startingDayOfWeek: StartingDayOfWeek.monday, //월요일부터
                                 availableGestures: AvailableGestures.all,
 
-                                onDaySelected: (DateTime selectDay, DateTime focusDay) {
+                                onDaySelected: (DateTime selectDay, DateTime focuseDay) {
                                   setState(() {
                                     selectedDay = selectDay;
-                                    focusedDay = focusDay;
+                                    focusedDay = focuseDay;
                                     isSelect =true;
                                   });
                                 },
@@ -161,8 +161,8 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                   return isSameDay(selectedDay, date);
                                 },
 
-                                onPageChanged: (focusDay) {
-                                  focusedDay = focusDay;
+                                onPageChanged: (focuseDay) {
+                                  focusedDay = focuseDay;
                                 },
 
 

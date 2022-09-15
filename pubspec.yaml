@@ -38,13 +38,14 @@ dependencies:
   # slidable
   flutter_slidable: ^2.0.0
   # calendar
-  syncfusion_flutter_calendar: ^20.2.48
+  # syncfusion_flutter_calendar: ^20.2.48 <- 삭제하기
   table_calendar: ^3.0.7
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  # ntp: ^2.0.0 <- 삭제하기
 
 dev_dependencies:
   flutter_test:
