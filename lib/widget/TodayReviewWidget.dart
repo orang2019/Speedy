@@ -6,6 +6,8 @@ import 'package:lastaginfirebase/widget/todo_widget.dart';
 
 import 'package:intl/intl.dart';
 
+import 'package:lastaginfirebase/timer/timermain.dart';
+
 
 
 
@@ -63,9 +65,11 @@ class TodayReviewWidget extends StatelessWidget {
     }
 
     String now = DateFormat('yyyy-MM-dd').format(DateTime.now()); //todo : 변수 date의 포멧맞추기 -> 근데 굳이해야할까? 우선 냅둠
+    String nowformat = DateFormat('MM-dd').format(DateTime.now());
     DateTime Today = DateTime.parse(now); //String->DateTime
 
     if (groupedEvents.containsKey(Today)){ Todaytasklist = groupedEvents[Today]!;}  //오늘 해당하는 task list
+
 
 
 
@@ -107,12 +111,12 @@ class TodayReviewWidget extends StatelessWidget {
 
                                 children: [
                                   IconButton(
-                                    onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context) => timer()));},icon: const Icon(Icons.play_arrow_rounded)),
+                                    onPressed: () {Navigator.push(context,MaterialPageRoute(builder: (context) => timermain(Todaytasklist)));},icon: const Icon(Icons.play_arrow_rounded)),
 
                                // nPressed:(){Get.to(()=> todayreview(Todaytasklist,Todaytitlelist,Todaynotelist,Todaytimelist));} , icon: const Icon(Icons.play_arrow_rounded)),
                                   const SizedBox(width: 30,height: 30,),
                                   const Icon(Icons.audiotrack_rounded,color: Colors.cyan),
-                                  Text("${Today}"),
+                                  Text("${nowformat}"),
                               Container(width: 10,height: 10,),
 
                               ListView.builder(

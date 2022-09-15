@@ -65,4 +65,10 @@ class TodosProvider extends ChangeNotifier {
 
     FirebaseApi.updateTodo(todo);
   }
+
+  // 타이머 수정
+  void updatetimer(todo, newtimer) {
+    todo.timer = newtimer;
+    FirebaseApi.updateTodo(todo);
+  }
 }
