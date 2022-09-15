@@ -10,16 +10,17 @@ import 'package:lastaginfirebase/timer/card.dart';
 
 
 class timermain extends StatelessWidget {
-  timermain(this.todo,{Key? key}) : super(key: key);
-  List<dynamic> todo;
+  timermain({required this.Todaytasklist,Key? key}) : super(key: key);
+  List<dynamic> Todaytasklist;
   //todo 사용법 : (예시)Todaytasklist[index].title
 
 
   @override
 
   Widget build(BuildContext context) {
-    List title = todo.where((e) => e.title).toList() ;
-    List description = todo.where((e) => e.description).toList() ;
+    List title = Todaytasklist.map((e) => e.title.toString()).toList() ;
+    List description = Todaytasklist.map((e) => e.description.toString()).toList() ;
+
 
     return Scaffold(
       body:  Builder(
@@ -35,14 +36,16 @@ class timermain extends StatelessWidget {
                         enlargeCenterPage: false,
                         scrollDirection: Axis.vertical,
                       ),
-                      itemCount: todo.length,
+                      itemCount: Todaytasklist.length,
                       itemBuilder: (context, index, realIdx) {
 
-                        return card(todo[index],title[index],description[index]);
+                        return card(Todaytasklist[index],title[index],description[index]);
 
 
                       });}),
     );
+
+
   }
 }
 
