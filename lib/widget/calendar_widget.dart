@@ -272,31 +272,4 @@ class _CalendarWidgetState extends State<CalendarWidget> {
             }}
 
 
-  Eventlist(todayEvents,selectedEvents) {
-    if(todayEvents.isNotEmpty){
-      ListView.separated(
-        shrinkWrap: true,
-        physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.all(16), //card간 분리
-        separatorBuilder: (context, index) => Container(height: 8),
-
-        itemCount: todayEvents.length,
-        itemBuilder: (context, index) {
-          final todo = todayEvents[index];
-          return TodoWidget(todo: todo);
-        });}
-    else if(selectedEvents.isNotEmpty){ListView.separated(
-        shrinkWrap: true,
-        physics: BouncingScrollPhysics(),
-        padding: EdgeInsets.all(16), //card간 분리
-        separatorBuilder: (context, index) => Container(height: 8),
-
-        itemCount: selectedEvents.length,
-        itemBuilder: (context, index) {
-          final todo = selectedEvents[index];
-          return TodoWidget(todo: todo);
-        });}
-
-    else{Center(child: Text('No todos.', style: TextStyle(fontSize: 20),));}
-  }
 

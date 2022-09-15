@@ -38,8 +38,10 @@ class TodosProvider extends ChangeNotifier {
 
   /// 안한놈
   List<Todo> get todos => _todos.where((todo) => todo.isDone == false).toList();
+
   /// 한놈
-  List<Todo> get todosCompleted => _todos.where((todo) => todo.isDone == true).toList();
+  List<Todo> get todosCompleted =>
+      _todos.where((todo) => todo.isDone == true).toList();
 
   void setTodos(List todos) =>
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -50,8 +52,15 @@ class TodosProvider extends ChangeNotifier {
 
   void addTodo(Todo todo) => FirebaseApi.createTodo(todo);
 
-  void removeTodo(Todo todo)  => FirebaseApi.deleteTodo(todo);
-
+  void removeTodo(Todo todo) {
+    final Map<dynamic, Todo> todomap = todos.asMap();
+    todomap.forEach((key, value) {
+      if (todo.title == value.title) {
+        FirebaseApi.deleteTodo(value);
+      }
+    });
+  }
+// 나 다했져 - 이것만 전체다 아니고 하나만.
   bool toggleTodoStatus(Todo todo) {
     todo.isDone = !todo.isDone;
     FirebaseApi.updateTodo(todo);
@@ -60,15 +69,28 @@ class TodosProvider extends ChangeNotifier {
   }
 
   void updateTodo(Todo todo, String title, String description) {
-    todo.title = title;
-    todo.description = description;
-
-    FirebaseApi.updateTodo(todo);
+    final Map<dynamic, Todo> todomap = todos.asMap();
+    todomap.forEach((key, value) {
+      if (todo.title == value.title) {
+        value.title = title;
+        value.description = description;
+        FirebaseApi.updateTodo(value);
+      }
+    });
   }
 
   // 타이머 수정
   void updatetimer(todo, newtimer) {
-    todo.timer = newtimer;
-    FirebaseApi.updateTodo(todo);
+    final Map<dynamic, Todo> todomap = todos.asMap();
+    todomap.forEach((key, value) {
+      if (todo.title == value.title) {
+        value.timer = newtimer;
+        FirebaseApi.updateTodo(value);
+      }
+    });
   }
+
+
+
+
 }

@@ -19,6 +19,7 @@ class TodoWidget extends StatefulWidget {
 class _TodoWidgetState extends State<TodoWidget> {
 
 
+
   Widget buildTodo(BuildContext context) => GestureDetector(
     onTap: ()=> editTodo(context, widget.todo),
     child: Container(
@@ -76,43 +77,49 @@ class _TodoWidgetState extends State<TodoWidget> {
     Utils.showSnackBar(context,'너 금방 삭제했어');
   }
 
-  editTodo(BuildContext context, Todo todo) => Navigator.of(context).push(
+  editTodo(BuildContext context, Todo todo) {
+    return Navigator.of(context).push(
     MaterialPageRoute(
       builder: (context) => EditTodoPage(todo: todo),
     ),
-  );
+  );}
 
   @override
-  Widget build(BuildContext context) => ClipRRect(
-    borderRadius: BorderRadius.circular(16),
-    child: Slidable(
-      key: Key(widget.todo.id!), //todo : Todo
-      endActionPane: ActionPane(
-        motion: ScrollMotion(),
-        children: [
-          SlidableAction(
-            flex: 2,
-            onPressed: (context) =>{
-              editTodo(context,widget.todo)
-            },
-            backgroundColor: Colors.green,
-            foregroundColor: Colors.white,
-            icon: Icons.edit,
-            label: 'Edit',
-          ),
-          SlidableAction(
-            onPressed: (context) =>{
-              deleteTodo(context,widget.todo)
-            },
-            backgroundColor: Colors.red,
-            foregroundColor: Colors.white,
-            icon: Icons.delete,
-            label: 'Delete',
-          ),
-        ],
-      ),
 
-      child: buildTodo(context),
+
+  Widget build(BuildContext context) => Container(
+
+    child: ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Slidable(
+        key: Key(widget.todo.id!), //todo : Todo
+        endActionPane: ActionPane(
+          motion: ScrollMotion(),
+          children: [
+            SlidableAction(
+              flex: 2,
+              onPressed: (context) =>{
+                editTodo(context,widget.todo)
+              },
+              backgroundColor: Colors.green,
+              foregroundColor: Colors.white,
+              icon: Icons.edit,
+              label: 'Edit',
+            ),
+            SlidableAction(
+              onPressed: (context) =>{
+                deleteTodo(context,widget.todo)
+              },
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Delete',
+            ),
+          ],
+        ),
+
+        child: buildTodo(context),
+      ),
     ),
   );
 }
