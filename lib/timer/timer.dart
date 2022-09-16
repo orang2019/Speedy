@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:lastaginfirebase/provider/todos.dart';
 
-
+//성공의 지름길 or 벼락치기
 
 
 class timer extends StatefulWidget {
@@ -45,47 +45,6 @@ class _timerState extends State<timer> {
 
   }
 
-
-  // 00:00 UI-1
-  Widget buildTimeCard({required String time }) {
-    return Container(
-      width: 50,
-      height: 50,
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(20)
-      ),
-      child: Text(
-        time,
-
-        style:  TextStyle(
-            fontWeight: FontWeight.bold,
-            color: (isCountDown && duration.inSeconds <= 5) || isCountDown==false ? Colors.redAccent : Colors.white,
-            fontSize: 20
-        ),),
-    );
-  }
-
-
-
-  // 00:00 UI-2
-  Widget buildTime() {
-    String TwoDigits(int n) => n.toString().padLeft(2, '0');
-
-    final M = TwoDigits(duration.inMinutes.remainder(60));
-    final S = TwoDigits(duration.inSeconds.remainder(60));
-
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        buildTimeCard(time: M),
-        const SizedBox(width: 8),
-        buildTimeCard(time: S),
-      ],
-    );
-  }
 
 
 
@@ -152,7 +111,54 @@ class _timerState extends State<timer> {
     }}
 
 
+  // 00:00 UI-1
+  Widget buildTimeCard({required String time }) {
+    return Container(
+      width: 50,
+      height: 50,
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(20)
+      ),
+      child: Text(
+        time,
 
+        style:  TextStyle(
+            fontWeight: FontWeight.bold,
+            color: (isCountDown && duration.inSeconds <= 5) || isCountDown==false ? Colors.redAccent : Colors.white,
+            fontSize: 20
+        ),),
+    );
+  }
+
+
+
+  // 00:00 UI-2
+  Widget buildTime() {
+    String TwoDigits(int n) => n.toString().padLeft(2, '0');
+
+    final M = TwoDigits(duration.inMinutes.remainder(60));
+    final S = TwoDigits(duration.inSeconds.remainder(60));
+
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        buildTimeCard(time: M),
+        const SizedBox(width: 8),
+        buildTimeCard(time: S),
+      ],
+    );
+  }
+
+
+
+//timer만 업데이트
+  updatetime(selectTask, newtime) async {
+    final provider = Provider.of<TodosProvider>(context, listen: false);
+    provider.updatetimer(selectTask,newtime.toString()); // firebase 업데이트=새로운값으로 덮어씌우기
+  }
 
 
 
@@ -160,12 +166,13 @@ class _timerState extends State<timer> {
 //  시작,끝 버튼
 
   Widget buildButtons() {
-    var isRun = timer == null ? false : timer?.isActive; //초 기값은 시작전
+    var isRun = timer == null ? false : timer?.isActive; //초기값은 시작전
     if (isRun!) {
       return TextButton(onPressed: () {
-        final provider = Provider.of<TodosProvider>(context, listen: false);
-        provider.updatetimer(widget.todo,timecheck.toString()); // firebase 업데이트=새로운값으로 덮어씌우기
+
+        updatetime(widget.todo, timecheck);
         timeuifunction(widget.todo.timer); // 답하는데걸리는 시간을 ui에 보여주기
+
 
         timer?.cancel();
 
@@ -187,7 +194,6 @@ class _timerState extends State<timer> {
   }
 
   // 답하는데 걸리는 시간 ui
-  var timeui;
   var m;
   var s;
 
@@ -204,8 +210,11 @@ class _timerState extends State<timer> {
 
 
 
+
   @override
   Widget build(BuildContext context) {
+
+    // print(widget.todo.timer); 실험용
 
 
 
@@ -221,7 +230,8 @@ class _timerState extends State<timer> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: () {isCountDown == true ? minituesAddButton() : null;}, child: Text(" +1 min")), //1분추가버튼
+                TextButton(onPressed: () {isCountDown == true ? minituesAddButton() : null;}
+                    , child: Text(" +1 min")), //1분추가버튼
                 buildButtons(), //시작끝버튼
               ],
             ), //버튼

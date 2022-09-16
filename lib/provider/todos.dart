@@ -81,14 +81,25 @@ class TodosProvider extends ChangeNotifier {
 
   // 타이머 수정
   void updatetimer(todo, newtimer) {
-    final Map<dynamic, Todo> todomap = todos.asMap();
-    todomap.forEach((key, value) {
-      if (todo.title == value.title) {
-        value.timer = newtimer;
-        FirebaseApi.updateTodo(value);
-      }
-    });
+
+    todo.timer = newtimer;
+    FirebaseApi.updateTodo(todo);
+    //
+    // final Map<dynamic, Todo> todomap = todos.asMap();
+    // todomap.forEach((key, value) {
+    //   if (todo.title == value.title) {
+    //     value.timer = newtimer;
+    //     FirebaseApi.updateTodo(value);
+    //     notifyListeners();
+    //   }
+    // });
+
   }
+
+
+
+
+
 
 
 
