@@ -6,7 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:lastaginfirebase/provider/todos.dart';
 
-//성공의 지름길 or 벼락치기
+// 앱이름? 성공의 지름길 or 벼락치기
+// 22/09/16
+// 문제 : title이 같은 todo의 timer 모두 같게 못했다. print(widget.todo.timer)시 최초한번만 print&ui변경만 된다. 나갔다가 들어오면 변경은 되는걸 보아서 fierbase문제는 아닌듯.
+// 원인 : 정확히는 모른다. provider, firebase문제도 아닌거같다. 아닌거 같은것도 사실은 문제임.
+// 해결x : firebase속도가 느려서? -> timeuifunction(widget.todo.timer) 에 await걸어도 안됨. provider의 문제인듯해서 ->context.read<Store1>() 로해도 안됨.
+// 마무리 : title이 같은 todo의 timer 모두 같게 못했다. 주어진 task 하나만 변경시 가능.
+
+// 나중에 할일 : 이전복습때 마지막으로 기입된 timer 보여주기.
+
+
+
 
 
 class timer extends StatefulWidget {
