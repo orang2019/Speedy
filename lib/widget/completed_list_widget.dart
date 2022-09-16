@@ -26,7 +26,7 @@ class CompletedListWidget extends StatelessWidget {
       itemBuilder: (context, index) {
         final todo = todos[index];
 
-        return TodoWidget(todo: todo);
+        return TodoWidget(list:todos,todo: todo,index: index);
       },
     );
   }

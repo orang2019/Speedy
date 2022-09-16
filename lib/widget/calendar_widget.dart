@@ -43,7 +43,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // 주의 ! 이 위치에 둬야하는 이유
+    /// 주의 ! 이 위치에 둬야하는 이유
     // 1 - CalendarWidget 이 completed 한 후에, provider 이 나와야한다. initstate 안에 provider 을 넣으면 안된다.
     // 2 - 이유는 모른다,위에다 두면 계속 rebuild 되어서 groupedEvents[date]!.add 가 계속된다. 여기두면 한번만 시행되는듯 근데 계속 null 떠서 나중에 확인하기.
     final provider = Provider.of<TodosProvider>(context);
@@ -184,7 +184,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                             itemCount: todayEvents.length,
                                             itemBuilder: (context, index) {
                                               final todo = todayEvents[index];
-                                              return TodoWidget(todo: todo);
+                                              return TodoWidget(list:todayEvents,todo: todo,index:index);
                                             })
                             : selectedEvents.isEmpty ? Center(child: Text('No todos.', style: TextStyle(fontSize: 20),))
                                 : ListView.separated(
@@ -196,7 +196,7 @@ class _CalendarWidgetState extends State<CalendarWidget> {
                                 itemCount: selectedEvents.length,
                                 itemBuilder: (context, index) {
                                   final todo = selectedEvents[index];
-                                  return TodoWidget(todo: todo);
+                                  return TodoWidget(list:selectedEvents,todo: todo, index:index);
                                 })
 
 

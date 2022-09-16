@@ -50,7 +50,11 @@ class TodosProvider extends ChangeNotifier {
       });
 
 
-  void addTodo(Todo todo) => FirebaseApi.createTodo(todo);
+  //복습할 날짜받은후, 생성
+  void addTodo(Todo todo) {
+       FirebaseApi.createTodo(todo);
+  }
+
 
   void removeTodo(Todo todo) {
     final Map<dynamic, Todo> todomap = todos.asMap();
@@ -60,7 +64,7 @@ class TodosProvider extends ChangeNotifier {
       }
     });
   }
-// 나 다했져 - 이것만 전체다 아니고 하나만.
+// 나 다했져 - 이것만 전체다 아니고 하나만. //삭제아님.
   bool toggleTodoStatus(Todo todo) {
     todo.isDone = !todo.isDone;
     FirebaseApi.updateTodo(todo);
@@ -84,15 +88,6 @@ class TodosProvider extends ChangeNotifier {
 
     todo.timer = newtimer;
     FirebaseApi.updateTodo(todo);
-    //
-    // final Map<dynamic, Todo> todomap = todos.asMap();
-    // todomap.forEach((key, value) {
-    //   if (todo.title == value.title) {
-    //     value.timer = newtimer;
-    //     FirebaseApi.updateTodo(value);
-    //     notifyListeners();
-    //   }
-    // });
 
   }
 

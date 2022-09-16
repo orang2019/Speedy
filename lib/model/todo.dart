@@ -12,6 +12,8 @@ class Todo {
   String description;
   bool isDone;
   String? timer;
+  dynamic index;
+
 
   Todo({
     required this.createdTime,
@@ -19,7 +21,8 @@ class Todo {
     this.description = '',
     this.id,
     this.isDone = false,
-    this.timer
+    this.timer,
+    this.index
   });
 
   static Todo fromJson(Map<String, dynamic> json) => Todo(
@@ -29,6 +32,7 @@ class Todo {
     id: json['id'],
     isDone: json['isDone'],
     timer: json['timer'],
+    index: json['index'],
 
   );
 
@@ -39,6 +43,7 @@ class Todo {
     'id': id,
     'isDone': isDone,
     'timer': timer,
+    'index': index,
 
   };
 

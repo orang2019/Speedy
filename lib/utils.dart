@@ -6,9 +6,12 @@ import 'package:flutter/material.dart';
 
 class Utils {
   static void showSnackBar(BuildContext context, String text) =>
-      Scaffold.of(context)
+      ScaffoldMessenger.of(context)
         ..removeCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(text))); /// 아마 이것때문에 Note: Recompile with -Xlint:unchecked for details.
+        ..showSnackBar(SnackBar(
+          content: Text(text),
+
+        ));
 
   static DateTime toDateTime(Timestamp value) {
    // if (value == null) return null; todo : 에러나고 안필요해보여서 지움.
