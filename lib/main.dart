@@ -8,6 +8,8 @@ import 'package:lastaginfirebase/page/home_page.dart';
 import 'package:lastaginfirebase/provider/todos.dart';
 
 
+
+
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -51,11 +53,13 @@ class _MyAppState extends State<MyApp> {
     create: (context) => TodosProvider(), //변화에 대해 여러개 구독도 가능하다.
     child: MaterialApp(  // child 하위 모든것들은 TodosProvider() 에 접근 가능하다.
       debugShowCheckedModeBanner: false,
+
       title: title,
       theme: ThemeData(
         primarySwatch: Colors.pink,
         scaffoldBackgroundColor: Color(0xFFf6f5ee),
       ),
+
       home: HomePage(),
     ),
   );
