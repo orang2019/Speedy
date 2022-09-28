@@ -4,6 +4,15 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 
+
+/// 한 것
+/// 1. firebase message와 local_notificaion라이브러리 연동시키기.
+/// 2. firebase message로 알림 보내기
+/// 할 것
+/// 1. 벼락치기를 위해 local notification 시간설정 하기
+/// 2. firebase message와 firestore 연동시키기 
+
+
 class NotificationController extends GetxController {
   static NotificationController get to => Get.find(); // getx으로 언제든 호출가능
 

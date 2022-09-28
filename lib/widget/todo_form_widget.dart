@@ -13,7 +13,6 @@ class TodoFormWidget extends StatelessWidget {
   final VoidCallback onSavedTodo;
 
 
-
   const TodoFormWidget({
     Key? key,
     this.title = '',
@@ -23,49 +22,49 @@ class TodoFormWidget extends StatelessWidget {
     required this.onSavedTodo,
   }) : super(key: key);
 
+
+
   @override
 
+
   Widget build(BuildContext context) {
+
+
     final provider = Provider.of<TodosProvider>(context);
-    List todo = provider.todos;
-
-
+    final List todo = provider.todos;
+    final String previousTitle = title; // 기존에 있던 title
 
 
 
 
     return SingleChildScrollView(
 
+      child: Column(
+        children: [
+          buildTitle(todo, previousTitle),
+          SizedBox(height:30),
+          buildDescription(),
+          SizedBox(height: MediaQuery.of(context).size.height/2),
+          buildButton(),
+        ],
+      ));
+    }
 
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        buildTitle(todo),
-        SizedBox(height: 8),
-        buildDescription(),
-        SizedBox(height: 32),
-        buildButton(),
-      ],
-    ),
-  );}
-
-  Widget buildTitle(List todo) => TextFormField(
-
-
+  Widget buildTitle(List todo, String previousTitle) => TextFormField(
 
     // todo : title
-    maxLines: 1,
+    maxLines: 5,
     initialValue: title,
     onChanged: onChangedTitle,
     validator: (title) {
       Iterable notTitle = todo.where((e) => e.title == title );
-      if (title!.isEmpty ) {
+      if (title!.isEmpty ) {  // 작성한 title 이 없다면
         return 'The title cannot be empty';
       }
-      else if(notTitle.isNotEmpty){
+      else if(notTitle.isNotEmpty && ('' == previousTitle)){ // 처음 만드는 title 이라면
         return '기존의 질문은 삼가하기 !';
       }
-      return null;
+      return null; // 편집할 땐, 이전에 있던 title 사용가능.
     },
     decoration: InputDecoration(
       border: UnderlineInputBorder(),
@@ -75,12 +74,12 @@ class TodoFormWidget extends StatelessWidget {
 
   Widget buildDescription() => TextFormField(
     // todo : note
-    maxLines: 3,
+    maxLines: 10,
     initialValue: description,
     onChanged: onChangedDescription,
     validator: (description) {
       if (description!.isEmpty ) {
-        return 'The description cannot be empty';
+        return 'The description candnot be empty';
       }
       return null;
     },

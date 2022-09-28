@@ -1,3 +1,6 @@
+// 파이어베이스로 push
+// provider로 local 변수
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lastaginfirebase/api/firebase_api.dart';

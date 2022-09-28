@@ -1,14 +1,19 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lastaginfirebase/api/firebase_api.dart';
 import 'package:lastaginfirebase/main.dart';
-import 'package:lastaginfirebase/widget/add_todo_dialog_widget.dart';
+import 'package:lastaginfirebase/page/add_todo_dialog_widget.dart';
 import 'package:lastaginfirebase/widget/todo_list_widget.dart';
 import 'package:lastaginfirebase/widget/completed_list_widget.dart';
 import 'package:lastaginfirebase/provider/todos.dart';
 import 'package:provider/provider.dart';
 import 'package:lastaginfirebase/widget/calendar_widget.dart';
 import 'package:lastaginfirebase/widget/TodayReviewWidget.dart';
+import 'package:lastaginfirebase/calendar_goal/calendar_goal_widget.dart';
+
+import '../widget/todo_form_widget.dart';
+import 'edit_todo_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -29,6 +34,7 @@ class _HomePageState extends State<HomePage> {
     ];
 
     return Scaffold(
+      appBar: AppBar(actions: [IconButton(onPressed: (){Get.to(calendar_goal());}, icon: Icon(Icons.golf_course))]),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.white.withOpacity(0.7),
@@ -81,11 +87,7 @@ class _HomePageState extends State<HomePage> {
           borderRadius: BorderRadius.circular(20),
         ),
         backgroundColor: Colors.black,
-        onPressed: () => showDialog(
-          context: context,
-          builder: (context) => AddTodoDialogWidget(),
-          barrierDismissible: false,
-        ),
+        onPressed: () { Get.to(() => addTodoPage());},
         child: Icon(Icons.add),
       ),
     );

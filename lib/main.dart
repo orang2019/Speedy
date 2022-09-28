@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:lastaginfirebase/page/home_page.dart';
 import 'package:lastaginfirebase/provider/todos.dart';
+import 'package:lastaginfirebase/provider/goals.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:permission_handler/permission_handler.dart';
@@ -13,12 +14,24 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:lastaginfirebase/controller/notificaion_controller.dart';
 
+//hive
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:lastaginfirebase/provider/goal.dart';
+import 'package:lastaginfirebase/provider/goals.dart';
 
 
 
+late Box box;
 
 Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  Hive.registerAdapter<CalendarGoal>(CalendarGoalAdapter());//hive 세팅2
+  await Hive.initFlutter(); //hive 세팅1
+  box = await Hive.openBox<CalendarGoal>('goals');//hive 세팅3
+
+
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -38,12 +51,18 @@ class _MyAppState extends State<MyApp> {
   final String title = 'Todo App';
 
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-    create: (context) => TodosProvider(), //변화에 대해 여러개 구독도 가능하다.
+
+
+  Widget build(BuildContext context) =>  MultiProvider(
+      providers: [
+        ChangeNotifierProvider( create: (context) => TodosProvider()),
+        ChangeNotifierProvider( create: (context) => GoalsProvider()),
+        ],
     child: GetMaterialApp(  // child 하위 모든것들은 TodosProvider() 에 접근 가능하다.
       debugShowCheckedModeBanner: false,
 
       title: title,
+
       theme: ThemeData(
         primarySwatch: Colors.pink,
         scaffoldBackgroundColor: Color(0xFFf6f5ee),
