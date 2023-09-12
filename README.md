@@ -1,7 +1,7 @@
 # 뇌과학을 적용한 암기앱
 ---
 # 프로젝트 소개
-Project nickname : Speedy (speed + study)
+Project nickname : Speedy (speed + study)  
 Project execution period : 2022.04 ~ 2022.09
 
 
@@ -21,21 +21,31 @@ Speedy는 빠른 암기가 필요한 사람들을 위한 시스템으로, 단기
 
 
 # 사용 방법
-TabBar는 2개로 구성되어 있다.
+1. 상단바에서 목표를 설정한다.
+2. TabBar에서 암기한다.
 
 ---
+### 목표 설정
+
+<img width="650" alt="image" src="https://github.com/orang2019/noteAndfirestore/assets/76255901/c0b0b6fa-8328-4d8c-98d5-9acb7f734bfa">
+
+
+
 ### 첫 번째 TabBar
-오늘 암기할 제목을 확인하고, 재생버튼(▶️)을 눌러 암기한다.
+오늘 암기할 제목을 확인하고, 재생버튼(▶️)을 눌러 암기한다.  
+
+<img width="651" alt="image" src="https://github.com/orang2019/noteAndfirestore/assets/76255901/08d6713f-c9e4-4ba5-957e-128ceffdfeaf">
+
 <img width="624" alt="image" src="https://github.com/orang2019/noteAndfirestore/assets/76255901/e2de18d9-de12-48c8-b2a3-561c78496d94">
-<img width="643" alt="image" src="https://github.com/orang2019/noteAndfirestore/assets/76255901/4965fdc3-d093-413a-b023-f48d65aa09f7">
+
 
 
 
 ### 두 번째 TabBar
-에빙하우스 망각곡선을 이용한 캘린더 이다.
-FAB버튼으로 문제를 만들면, 캘린더에 자동으로 복습할 내용이 채워진다.
+에빙하우스 망각곡선을 이용한 캘린더 이다.  
+FAB버튼으로 문제를 만들면, 캘린더에 자동으로 복습할 내용이 채워진다.  
 
-![Uploading image.png…]()
+<img width="643" alt="image" src="https://github.com/orang2019/noteAndfirestore/assets/76255901/4965fdc3-d093-413a-b023-f48d65aa09f7">
 
 
 ---
